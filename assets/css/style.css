@@ -1,0 +1,154 @@
+/* 
+   Innovtechnosq - Premium Dark Glassmorphism Design System 
+   Aesthetics: Deep Charcoal, Electric Blue, Slate Gray
+*/
+
+:root {
+    --primary: #3B82F6;
+    --primary-glow: rgba(59, 130, 246, 0.5);
+    --bg-dark: #0F172A;
+    --bg-dark-alt: #1E293B;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-glow: rgba(59, 130, 246, 0.1);
+    --text-main: #F1F5F9;
+    --text-muted: #94A3B8;
+}
+
+/* Base Styles */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-nav {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Premium Hover Effects */
+.glass-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, var(--glass-glow), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--glass-glow);
+}
+
+.glass-card:hover::before {
+    opacity: 1;
+}
+
+/* Button Styling (Premium Glow) */
+.btn-premium {
+    background: var(--primary);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--primary-glow);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--primary-glow);
+    filter: brightness(1.1);
+}
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    padding: 12px 32px;
+    border-radius: 14px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-dark-alt);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Typography Enhancements */
+.text-gradient {
+    background: linear-gradient(135deg, #FFF 0%, #3B82F6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Hero Glow Effect */
+.hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--glass-glow) 0%, transparent 70%);
+    top: -300px;
+    right: -200px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Admin Table Customization */
+.sr-table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.sr-row {
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.2s ease;
+}
+
+.sr-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+}

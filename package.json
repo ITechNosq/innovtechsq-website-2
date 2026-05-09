@@ -1,0 +1,13 @@
+{
+  "name": "new-web-site-23-4-2026",
+  "version": "1.0.0",
+  "description": "**IMPORTANT**: Use local server to avoid file:// errors:",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

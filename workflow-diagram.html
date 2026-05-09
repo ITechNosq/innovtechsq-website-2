@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InnovTech Sq – System Workflow Diagram</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0e1a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 50px;
+  }
+
+  .diagram {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── LAYER ── */
+  .layer {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    position: relative;
+  }
+  .layer-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #475569;
+    min-width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .layer-content {
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+  }
+
+  /* ── NODE ── */
+  .node {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 18px 20px;
+    flex: 1;
+    min-width: 170px;
+    position: relative;
+    transition: transform .2s, box-shadow .2s;
+    backdrop-filter: blur(6px);
+  }
+  .node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(96,165,250,.18);
+  }
+  .node-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .node-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 4px;
+  }
+  .node-desc {
+    font-size: 0.7rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+  .badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  /* colour variants */
+  .blue  { border-color: rgba(96,165,250,.35); background: rgba(96,165,250,.07); }
+  .purple{ border-color: rgba(167,139,250,.35); background: rgba(167,139,250,.07); }
+  .green { border-color: rgba(52,211,153,.35);  background: rgba(52,211,153,.07); }
+  .red   { border-color: rgba(248,113,113,.35); background: rgba(248,113,113,.07); }
+  .amber { border-color: rgba(251,191,36,.35);  background: rgba(251,191,36,.07); }
+  .teal  { border-color: rgba(45,212,191,.35);  background: rgba(45,212,191,.07); }
+
+  .badge-blue   { background: rgba(96,165,250,.2);  color: #60a5fa; }
+  .badge-purple { background: rgba(167,139,250,.2); color: #a78bfa; }
+  .badge-green  { background: rgba(52,211,153,.2);  color: #34d399; }
+  .badge-red    { background: rgba(248,113,113,.2); color: #f87171; }
+  .badge-amber  { background: rgba(251,191,36,.2);  color: #fbbf24; }
+  .badge-teal   { background: rgba(45,212,191,.2);  color: #2dd4bf; }
+
+  /* ── CONNECTOR ── */
+  .connector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 0;
+    gap: 8px;
+    position: relative;
+  }
+  .connector::before {
+    content: '';
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(96,165,250,.4), rgba(167,139,250,.4));
+    transform: translateX(-50%);
+  }
+  .connector-label {
+    background: #0a0e1a;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.62rem;
+    color: #94a3b8;
+    z-index: 1;
+  }
+  .arrow { font-size: 1.1rem; color: #475569; z-index: 1; }
+
+  /* ── FLOW SECTION ── */
+  .flow-section {
+    margin-top: 60px;
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding-top: 40px;
+  }
+  .flow-title {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .flow-track {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 130px;
+    flex: 1;
+  }
+  .flow-bubble {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .flow-bubble-blue   { background: rgba(96,165,250,.15);  border: 2px solid #60a5fa; }
+  .flow-bubble-purple { background: rgba(167,139,250,.15); border: 2px solid #a78bfa; }
+  .flow-bubble-green  { background: rgba(52,211,153,.15);  border: 2px solid #34d399; }
+  .flow-bubble-amber  { background: rgba(251,191,36,.15);  border: 2px solid #fbbf24; }
+  .flow-bubble-red    { background: rgba(248,113,113,.15); border: 2px solid #f87171; }
+  .flow-bubble-teal   { background: rgba(45,212,191,.15);  border: 2px solid #2dd4bf; }
+
+  .flow-step-title { font-size: 0.72rem; font-weight: 700; color: #e2e8f0; text-align: center; margin-bottom: 4px; }
+  .flow-step-sub   { font-size: 0.62rem; color: #64748b; text-align: center; line-height: 1.4; padding: 0 4px; }
+
+  .flow-arrow {
+    flex: 0 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    color: #334155;
+    font-size: 1.2rem;
+  }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    color: #94a3b8;
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  /* security panel */
+  .security-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-top: 30px;
+  }
+  .sec-card {
+    background: rgba(248,113,113,.05);
+    border: 1px solid rgba(248,113,113,.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .sec-card-title { font-size: 0.75rem; font-weight: 700; color: #f87171; margin-bottom: 6px; }
+  .sec-card-list  { font-size: 0.67rem; color: #94a3b8; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<h1>InnovTech Sq – System Workflow</h1>
+<p class="subtitle">Full-stack architecture · Lead capture · Email automation · Admin panel</p>
+
+<div class="diagram">
+
+  <!-- LAYER 1: Frontend -->
+  <div class="layer">
+    <div class="layer-label" style="color:#60a5fa">Frontend</div>
+    <div class="layer-content">
+      <div class="node blue">
+        <span class="badge badge-blue">HTML/JS</span>
+        <div class="node-icon">🌐</div>
+        <div class="node-title">index.html</div>
+        <div class="node-desc">Landing page with hero, services, contact form &amp; WhatsApp CTA</div>
+      </div>
+      <div class="node blue">
+        <span class="badge badge-blue">Form</span>
+        <div class="node-icon">📝</div>
+        <div class="node-title">Contact Form</div>
+        <div class="node-desc">Name · Email · Phone · Service type · Message · Turnstile CAPTCHA</div>
+      </div>
+      <div class="node blue">
+        <span class="badge badge-blue">Panel</span>
+        <div class="node-icon">🛡️</div>
+        <div class="node-title">admin.html</div>
+        <div class="node-desc">JWT-protected dashboard · SR list · stats · lead detail view</div>
+      </div>
+      <div class="node blue">
+        <span class="badge badge-blue">JS</span>
+        <div class="node-icon">⚙️</div>
+        <div class="node-title">main.js</div>
+        <div class="node-desc">Fetch API calls · error handling · UI state management</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="connector-label">HTTPS · CORS restricted · JSON payload</div>
+    <div class="arrow">↓</div>
+  </div>
+
+  <!-- LAYER 2: Security Gate -->
+  <div class="layer">
+    <div class="layer-label" style="color:#f87171">Security</div>
+    <div class="layer-content">
+      <div class="node red">
+        <span class="badge badge-red">Gate</span>
+        <div class="node-icon">🔒</div>
+        <div class="node-title">CORS Middleware</div>
+        <div class="node-desc">Restricts origins · no wildcards · allows specific headers only</div>
+      </div>
+      <div class="node red">
+        <span class="badge badge-red">Limit</span>
+        <div class="node-icon">🚦</div>
+        <div class="node-title">Rate Limiter</div>
+        <div class="node-desc">Per-IP &amp; per-email sliding window · returns 429 on breach</div>
+      </div>
+      <div class="node red">
+        <span class="badge badge-red">Bot</span>
+        <div class="node-icon">🤖</div>
+        <div class="node-title">Cloudflare Turnstile</div>
+        <div class="node-desc">Server-side CAPTCHA token verification before any DB write</div>
+      </div>
+      <div class="node red">
+        <span class="badge badge-red">Auth</span>
+        <div class="node-icon">🔑</div>
+        <div class="node-title">JWT Auth</div>
+        <div class="node-desc">HS256 · 60-min expiry · guards all admin routes via OAuth2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="connector-label">FastAPI routes · Pydantic validation · 422 / 429 / 401 errors</div>
+    <div class="arrow">↓</div>
+  </div>
+
+  <!-- LAYER 3: API Routes -->
+  <div class="layer">
+    <div class="layer-label" style="color:#a78bfa">API</div>
+    <div class="layer-content">
+      <div class="node purple">
+        <span class="badge badge-purple">POST</span>
+        <div class="node-icon">📥</div>
+        <div class="node-title">POST /leads</div>
+        <div class="node-desc">Validate → rate-check → CAPTCHA → dedup → save → email (BG)</div>
+      </div>
+      <div class="node purple">
+        <span class="badge badge-purple">GET</span>
+        <div class="node-icon">📋</div>
+        <div class="node-title">GET /leads</div>
+        <div class="node-desc">Admin only · pagination (skip/limit) · ordered by created_at DESC</div>
+      </div>
+      <div class="node purple">
+        <span class="badge badge-purple">GET</span>
+        <div class="node-icon">📊</div>
+        <div class="node-title">GET /leads/stats</div>
+        <div class="node-desc">Total · today · this week counts · admin only</div>
+      </div>
+      <div class="node purple">
+        <span class="badge badge-purple">POST</span>
+        <div class="node-icon">🔓</div>
+        <div class="node-title">POST /token</div>
+        <div class="node-desc">Admin login · credentials from env · returns JWT bearer token</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="connector-label">SQLAlchemy ORM · SQLite (leads.db)</div>
+    <div class="arrow">↓</div>
+  </div>
+
+  <!-- LAYER 4: Data -->
+  <div class="layer">
+    <div class="layer-label" style="color:#34d399">Data</div>
+    <div class="layer-content">
+      <div class="node green">
+        <span class="badge badge-green">Model</span>
+        <div class="node-icon">🗃️</div>
+        <div class="node-title">Lead Model</div>
+        <div class="node-desc">id · name · email · phone · service_type · message · created_at</div>
+      </div>
+      <div class="node green">
+        <span class="badge badge-green">DB</span>
+        <div class="node-icon">💾</div>
+        <div class="node-title">SQLite (leads.db)</div>
+        <div class="node-desc">File-based · indexed on email, phone, created_at · auto-migrated</div>
+      </div>
+      <div class="node green">
+        <span class="badge badge-green">Dedup</span>
+        <div class="node-icon">🔄</div>
+        <div class="node-title">Duplicate Guard</div>
+        <div class="node-desc">24-hr window · checks email OR phone · returns existing lead ID</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="connector-label">BackgroundTasks (async, non-blocking) · SMTP TLS 587</div>
+    <div class="arrow">↓</div>
+  </div>
+
+  <!-- LAYER 5: Email -->
+  <div class="layer">
+    <div class="layer-label" style="color:#2dd4bf">Email</div>
+    <div class="layer-content">
+      <div class="node teal">
+        <span class="badge badge-teal">SMTP</span>
+        <div class="node-icon">📧</div>
+        <div class="node-title">Auto-Responder</div>
+        <div class="node-desc">Branded HTML email sent to client · includes SR-ID &amp; WhatsApp link</div>
+      </div>
+      <div class="node teal">
+        <span class="badge badge-teal">SMTP</span>
+        <div class="node-icon">🔔</div>
+        <div class="node-title">Admin Notification</div>
+        <div class="node-desc">New-lead alert to admin email · name, phone, message summary</div>
+      </div>
+      <div class="node teal">
+        <span class="badge badge-teal">Gmail</span>
+        <div class="node-icon">🔐</div>
+        <div class="node-title">Gmail + App Password</div>
+        <div class="node-desc">smtp.gmail.com:587 · STARTTLS · credentials from .env</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /diagram -->
+
+
+<!-- ────────────────────── SEQUENTIAL FLOW ────────────────────── -->
+<div class="flow-section" style="max-width:1100px;margin:60px auto 0;">
+  <div class="flow-title">Lead Capture — Step-by-Step Flow</div>
+  <div class="flow-track">
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-blue">🌐</div>
+      <div class="flow-step-title">User Visits Site</div>
+      <div class="flow-step-sub">index.html loads, hero &amp; services displayed</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-blue">📝</div>
+      <div class="flow-step-title">Fills Form</div>
+      <div class="flow-step-sub">Name, email, phone, message &amp; CAPTCHA widget</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-amber">🤖</div>
+      <div class="flow-step-title">Turnstile</div>
+      <div class="flow-step-sub">CF token generated client-side, sent in body</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-red">🚦</div>
+      <div class="flow-step-title">Rate Limit</div>
+      <div class="flow-step-sub">IP &amp; email sliding-window check · 429 if exceeded</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-red">✅</div>
+      <div class="flow-step-title">CAPTCHA Verify</div>
+      <div class="flow-step-sub">Server calls CF API · rejects bots with 400</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-purple">🔄</div>
+      <div class="flow-step-title">Dedup Check</div>
+      <div class="flow-step-sub">Query DB for same email/phone in last 24 hrs</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-green">💾</div>
+      <div class="flow-step-title">Save Lead</div>
+      <div class="flow-step-sub">INSERT into leads.db · commit · get SR-ID</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-teal">📧</div>
+      <div class="flow-step-title">Send Emails</div>
+      <div class="flow-step-sub">Client auto-reply &amp; admin alert via BackgroundTasks</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-green">🎉</div>
+      <div class="flow-step-title">201 Created</div>
+      <div class="flow-step-sub">JSON response with SR-ID returned to frontend</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ────────────────────── ADMIN FLOW ────────────────────── -->
+<div class="flow-section" style="max-width:1100px;margin:40px auto 0;">
+  <div class="flow-title">Admin Panel — Authentication Flow</div>
+  <div class="flow-track">
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-blue">🛡️</div>
+      <div class="flow-step-title">admin.html</div>
+      <div class="flow-step-sub">Login screen with username &amp; password fields</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-purple">🔓</div>
+      <div class="flow-step-title">POST /token</div>
+      <div class="flow-step-sub">Credentials checked against .env vars</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-amber">🔑</div>
+      <div class="flow-step-title">JWT Issued</div>
+      <div class="flow-step-sub">HS256 · 60-min expiry · stored in memory</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-purple">📋</div>
+      <div class="flow-step-title">GET /leads</div>
+      <div class="flow-step-sub">Bearer token in Authorization header</div>
+    </div>
+    <div class="flow-arrow">→</div>
+
+    <div class="flow-step">
+      <div class="flow-bubble flow-bubble-green">📊</div>
+      <div class="flow-step-title">Dashboard</div>
+      <div class="flow-step-sub">Stats · lead table · paginated results displayed</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ────────────────────── SECURITY SUMMARY ────────────────────── -->
+<div class="flow-section" style="max-width:1100px;margin:40px auto 0;">
+  <div class="flow-title">Security Layers</div>
+  <div class="security-grid">
+    <div class="sec-card">
+      <div class="sec-card-title">🔒 Transport</div>
+      <div class="sec-card-list">CORS whitelist (no *)<br>HTTPS only<br>X-Request-ID tracing</div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-card-title">🚦 Rate Limiting</div>
+      <div class="sec-card-list">Per-IP sliding window<br>Per-email sliding window<br>429 with retry guidance</div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-card-title">🤖 Bot Protection</div>
+      <div class="sec-card-list">Cloudflare Turnstile<br>Server-side token verify<br>400 on failure</div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-card-title">🔑 Authentication</div>
+      <div class="sec-card-list">JWT HS256 bearer<br>60-min token expiry<br>OAuth2 dependency guard</div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-card-title">🛡️ Input Safety</div>
+      <div class="sec-card-list">Pydantic schemas<br>422 validation errors<br>No internal details leaked</div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-card-title">🔐 Secrets</div>
+      <div class="sec-card-list">.env file (git-ignored)<br>No hardcoded creds<br>SMTP App Password</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- LEGEND -->
+<div class="legend" style="max-width:1100px;margin:0 auto;">
+  <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>Frontend (HTML/JS)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f87171"></div>Security Middleware</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div>FastAPI Routes</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#34d399"></div>Data / Database</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#2dd4bf"></div>Email Service (SMTP)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div>External Services (CF, Gmail)</div>
+</div>
+
+<p style="text-align:center;margin-top:40px;font-size:0.65rem;color:#334155;">
+  InnovTech Sq © 2024 · System Architecture Diagram · Generated automatically
+</p>
+
+</body>
+</html>

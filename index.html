@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovtechnosq | Premium IT Solutions & Security</title>
+    <meta name="description"
+        content="Innovtechnosq provides high-end IT support, networking, website development, and CCTV solutions for modern businesses.">
+
+    <!-- Tailwind for layout, Custom CSS for aesthetics -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="bg-[#0F172A] text-slate-100 font-[Inter] overflow-x-hidden">
+    <div class="hero-glow"></div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="#home" class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                        <i class="fas fa-layer-group text-blue-500"></i>
+                        Innovtechnosq
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#home" class="text-sm font-medium hover:text-blue-400 transition-colors">Home</a>
+                    <a href="#services" class="text-sm font-medium hover:text-blue-400 transition-colors">Services</a>
+                    <a href="#pricing" class="text-sm font-medium hover:text-blue-400 transition-colors">Pricing</a>
+                    <a href="#contact" class="btn-premium py-2 px-6 text-sm">Get Started</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button data-hamburger class="text-2xl"><i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6 relative">
+        <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
+            <div
+                class="inline-block px-4 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-8">
+                🚀 Next-Gen IT Solutions for Startups
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[1.1] tracking-tight text-gradient">
+                Innovating Tech <br>for Your Success
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+                Premium IT support, secure networking, and high-performance websites. We bridge the gap between
+                complexity and efficiency.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="#contact" class="btn-premium text-lg w-full sm:w-auto">
+                    Submit Service Request
+                </a>
+                <a href="#" data-whatsapp="true"
+                    class="btn-glass text-lg w-full sm:w-auto flex items-center justify-center gap-3">
+                    <i class="fab fa-whatsapp text-green-400"></i>
+                    WhatsApp Support
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Expertise</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">Scalable solutions tailored for your business growth.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-panel glass-card p-10" data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-8 border border-blue-500/20">
+                        <i class="fas fa-headset text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">IT Support</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">24/7 technical assistance and AMC for
+                        uninterrupted operations.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="glass-panel glass-card p-10" data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-8 border border-emerald-500/20">
+                        <i class="fas fa-code text-2xl text-emerald-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Web Development</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Bespoke, high-conversion websites built with
+                        modern frameworks.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="glass-panel glass-card p-10" data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-8 border border-orange-500/20">
+                        <i class="fas fa-network-wired text-2xl text-orange-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Networking</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Secure, low-latency network architecture for
+                        modern offices.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="glass-panel glass-card p-10" data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center mb-8 border border-red-500/20">
+                        <i class="fas fa-video text-2xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">CCTV Security</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Smart surveillance solutions with remote access
+                        and AI detection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / SR Form -->
+    <section id="contact" class="py-32 px-6 bg-[#0B1224]">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-8 leading-tight">Ready to start your <span
+                            class="text-blue-500">Service Request?</span></h2>
+                    <p class="text-slate-400 text-lg mb-12">Submit your details and our senior engineers will reach out
+                        within 30 minutes.</p>
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 glass-panel flex items-center justify-center"><i
+                                    class="fas fa-phone text-blue-500"></i></div>
+                            <a href="tel:+918595237962"
+                                class="text-xl font-semibold hover:text-blue-500 transition-colors">+91 85952 37962</a>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 glass-panel flex items-center justify-center"><i
+                                    class="fab fa-whatsapp text-green-500"></i></div>
+                            <a href="#" data-whatsapp="true"
+                                class="text-xl font-semibold hover:text-green-500 transition-colors">Instant WhatsApp
+                                Support</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 md:p-12" data-aos="fade-left">
+                    <form data-contact-form>
+                        <h3 class="text-2xl font-bold mb-8">New Service Request (SR)</h3>
+                        <div id="form-message" class="mb-8 p-4 rounded-xl hidden"></div>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-400 mb-2">Full Name</label>
+                                <input type="text" name="name" data-name required
+                                    class="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 focus:border-blue-500 outline-none transition-all"
+                                    placeholder="John Doe">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-400 mb-2">Email</label>
+                                    <input type="email" name="email" data-email required
+                                        class="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 focus:border-blue-500 outline-none transition-all"
+                                        placeholder="john@company.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-400 mb-2">Phone</label>
+                                    <input type="tel" name="phone" data-phone required
+                                        class="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 focus:border-blue-500 outline-none transition-all"
+                                        placeholder="+91 ...">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-400 mb-2">Service Type</label>
+                                <select name="service_type" data-service-type
+                                    class="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 focus:border-blue-500 outline-none transition-all appearance-none">
+                                    <option value="IT Support">IT Support & AMC</option>
+                                    <option value="Web Development">Web Development</option>
+                                    <option value="Networking">Networking Setup</option>
+                                    <option value="CCTV Security">CCTV Security</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-400 mb-2">Requirements</label>
+                                <textarea name="message" data-message required rows="4"
+                                    class="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 focus:border-blue-500 outline-none transition-all"
+                                    placeholder="How can we help?"></textarea>
+                            </div>
+
+                            <!-- Cloudflare Turnstile Widget -->
+                            <!-- DEV NOTE: Using Cloudflare's official test key (always-passes on localhost) -->
+                            <!-- For production: replace data-sitekey with your real key from dash.cloudflare.com -->
+                            <div class="pt-2">
+                                <div class="cf-turnstile"
+                                    data-sitekey="1x00000000000000000000AA"
+                                    data-theme="dark"
+                                    data-callback="onTurnstileSuccess">
+                                </div>
+                                <!-- Populated automatically by the callback below -->
+                                <input type="hidden" id="turnstile-token" name="turnstile_token" />
+                            </div>
+
+                            <button type="submit" class="btn-premium w-full py-4 text-lg">Submit Request</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                <i class="fas fa-layer-group text-blue-500"></i>
+                Innovtechnosq
+            </div>
+            <p class="text-slate-500 text-sm">© 2024 Innovtechnosq Pvt Ltd. Built for excellence.</p>
+            <div class="flex gap-6">
+                <a href="#" class="text-slate-400 hover:text-white transition-colors"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" data-whatsapp="true" class="text-slate-400 hover:text-green-500 transition-colors"><i
+                        class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Called by Turnstile widget once the challenge is solved
+        function onTurnstileSuccess(token) {
+            document.getElementById('turnstile-token').value = token;
+        }
+    </script>
+</body>
+
+</html>
